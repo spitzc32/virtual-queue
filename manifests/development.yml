@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    container_name: postgres_queue
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=117l3vi
+      - POSTGRES_DB= db
+    restart: unless-stopped
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432" # change port
+
+  django:
+    build: ./api
+    container_name: django_queue
+    command: ["python", "manage.py", "migrate"]
+    volumes:
+      - ./api:/app/api
+    environment: 
+        - DB_HOST=db
+        - DB_NAME=postgres
+        - DB_USER=postgres
+        - DB_PASSWORD=117l3vi
+    ports:
+      - "8000:8000" # change port
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    container_name: react_queue
+    command: ["npm", "start", "run"]
+    volumes:
+      - ./frontend:/app/frontend
+      - node-modules:/app/frontend/node_modules
+    ports:
+      - "3000:3000" # change port
+
+volumes:
+  node-modules:
