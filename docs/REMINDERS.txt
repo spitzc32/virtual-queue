@@ -1,0 +1,2 @@
+This folder has the sole purpose of listing the sprints and its features done along with the 
+current goal for this project. 
