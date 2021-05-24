@@ -1,6 +1,6 @@
-# Django & React application
+# Virtual Queue application
 
-This is a set up so that we can easily create apps that use Django on the backend (and take advantage of the amazing admin UI) and React (set up with [`create-react-app`](https://npm.im/create-react-app)) for the front end application.
+This is the project repo for the final requirements in Design Analysis Algorithms. It contains both the backend API and the frontend api side Dockerize along with its db, postgreSQL.
 
 ## Running
 
