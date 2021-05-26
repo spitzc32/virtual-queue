@@ -10,8 +10,36 @@ from ..serializers.store import (
 	AccountBranchSerializer
 )
 
-# TODO: make a class of these 3 serializers above and test them
-# after that delete this comment (@Joseph)
+from store.models import (
+	Store,
+	StoreBranch
+)
+
+class StoreRetrieveAPIView(generics.ListCreateAPIView):
+    queryset = Store.objects.all()
+    serializer_class = StoreSerializer
 
 
+class StoreDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Store.objects.all()
+    serializer_class = StoreSerializer
 
+
+class StoreBranchRetrieveAPIView(generics.ListCreateAPIView):
+    queryset = StoreBranch.objects.all()
+    serializer_class = StoreBranchSerializer
+
+
+class StoreBranchDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StoreBranch.objects.all()
+    serializer_class = StoreBranchSerializer
+
+
+class AccountBranchRetrieveAPIView(generics.ListCreateAPIView):
+    queryset = StoreBranch.objects.all()
+    serializer_class = AccountBranchSerializer
+
+
+class AccountBranchDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StoreBranch.objects.all()
+    serializer_class = AccountBranchSerializer
