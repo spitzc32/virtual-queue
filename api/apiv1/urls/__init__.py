@@ -2,6 +2,11 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from django.urls import path, include
 
 from .accounts import account_patterns
+from .store import (
+	store_patterns,
+	storebranch_patterns
+	accountbranch_patterns
+	)
 
 app_name='api_v1'
 
@@ -10,6 +15,24 @@ urlpatterns = [
 		'account/', 
 		include(account_patterns)
 	),
+	path(
+		'store/', 
+		include(store_patterns)
+	),
+	path(
+		'storebranch/', 
+		include(storebranch_patterns)
+	),
+	path(
+		'accountbranch/', 
+		include(accountbranch_patterns)
+	),
+	path(
+        'order/', 
+        include(order_patterns)
+    ),
+    path(
+        'task/', 
+        include(tasks_patterns)
+    ),
 ]
-
-
