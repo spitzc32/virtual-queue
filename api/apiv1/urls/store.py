@@ -1,4 +1,4 @@
-from re_pathst_framework.urlpatterns import format_suffix_patterns
+from rest_framework.urlpatterns import format_suffix_patterns
 from django.urls import re_path
 
 # TODO: import the made View Classes and fill out the order patterns
