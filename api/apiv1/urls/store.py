@@ -1,4 +1,4 @@
-from rest_framework.urlpatterns import format_suffix_patterns
+from re_pathst_framework.urlpatterns import format_suffix_patterns
 from django.urls import re_path
 
 # TODO: import the made View Classes and fill out the order patterns
@@ -22,9 +22,8 @@ store_patterns = [
 		r'^(?P<pk>\d+)/details', 
 		StoreDetailView.as_view(),
 	),
-]
 
-storebranch_patterns = [
+
 	re_path(
 		'list/', 
 		StoreBranchRetrieveAPIView.as_view(),
@@ -33,9 +32,8 @@ storebranch_patterns = [
 		r'^(?P<pk>\d+)/details', 
 		StoreBranchDetailView.as_view(),
 	),
-]
 
-accountbranch_patterns = [
+
 	re_path(
 		'list/', 
 		AccountBranchRetrieveAPIView.as_view(),
@@ -48,5 +46,3 @@ accountbranch_patterns = [
 
 
 store_patterns = format_suffix_patterns(store_patterns)
-storebranch_patterns = format_suffix_patterns(storebranch_patterns)
-accountbranch_patterns = format_suffix_patterns(accountbranch_patterns)
