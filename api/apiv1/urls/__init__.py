@@ -13,26 +13,16 @@ app_name='api_v1'
 urlpatterns = [
 	path(
 		'account/', 
-		include(account_patterns)
-	),
-	path(
+		include(account_patterns),
 		'store/', 
-		include(store_patterns)
-	),
-	path(
+		include(store_patterns),
 		'storebranch/', 
-		include(storebranch_patterns)
-	),
-	path(
+		include(storebranch_patterns),
 		'accountbranch/', 
-		include(accountbranch_patterns)
-	),
-	path(
+		include(accountbranch_patterns),
         'order/', 
-        include(order_patterns)
-    ),
-    path(
+        incanlude(order_patterns),
         'task/', 
-        include(tasks_patterns)
+        include(tasks_patterns),
     ),
 ]
