@@ -4,10 +4,15 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework import generics
 
-from ..serializers.store import StoreTaskSerializer
+from ..serializers.tasks import StoreTaskSerializer
 
-# TODO: make a class of the serializers above and test them
-# after that delete this comment (@Jan)
+from tasks.models import StoreTask
+
+class StoreTaskRetrieveAPIView(generics.ListCreateAPIView):
+	queryset = StoreTask.objects.all()
+	serializer_class = StoreTaskSerializer
 
 
-
+class StoreTaskDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StoreTask.objects.all()
+    serializer_class = StoreTaskSerializer

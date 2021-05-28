@@ -6,7 +6,6 @@ from .orders import order_patterns
 from .tasks import tasks_patterns
 from .store import store_patterns
 
-
 app_name='api_v1'
 
 urlpatterns = [
