@@ -12,6 +12,7 @@ class AccountSerializer(serializers.ModelSerializer):
             'username',
             'first_name',
             'last_name',
+            'password',
             'preferred_name',
             'secondary_email',
             'longitude',

@@ -2,13 +2,12 @@ from store.models import Store, StoreBranch
 from accounts.models import Account
 
 from .accounts import AccountSerializer
-from .store import StoreBranchSerializer
 
 from rest_framework import serializers, fields
 
 
 class StoreSerializer(serializers.ModelSerializer):
-	branches = serializers.SerializerMethodField()
+    branches = serializers.SerializerMethodField()
 
     class Meta:
         model = Store
@@ -30,13 +29,13 @@ class StoreSerializer(serializers.ModelSerializer):
             is_active=True,
         )
 
-        serializer = StoreBranchSerializer(data=account_qs)
+        serializer = StoreBranchSerializer(data=store_qs)
         serializer.is_valid()
         return serializer.data
 
 
 class StoreBranchSerializer(serializers.ModelSerializer):
-    branches = serializers.SerializerMethodField()
+    store = serializers.SerializerMethodField()
 
     class Meta:
         model = StoreBranch
@@ -75,6 +74,6 @@ class AccountBranchSerializer(serializers.ModelSerializer):
             is_active=True,
         )
 
-        serializer = AccountSerializer(data=account_qs)
+        serializer = AccountSerializer(data=store_qs)
         serializer.is_valid()
         return serializer.data

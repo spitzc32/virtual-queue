@@ -12,11 +12,17 @@ urlpatterns = [
 	path(
 		'account/',
 		include(account_patterns),
-		'store/', 
-		include(store_patterns),
-		'order/', 
-		include(order_patterns),
-		'tasks/', 
-		include(tasks_patterns)
 	),
+	path(
+		'store/',
+		include(store_patterns),
+	),
+	path(
+		'order/',
+		include(order_patterns),
+	),
+	path(
+		'tasks/',
+		include(tasks_patterns)
+	)
 ]
