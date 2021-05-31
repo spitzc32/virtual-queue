@@ -6,7 +6,7 @@ from rest_framework import serializers, fields
 
 
 class StoreTaskSerializer(serializers.ModelSerializer):
-	branches = serializers.SerializerMethodField()
+    branches = serializers.SerializerMethodField()
 
     class Meta:
         model = StoreTask
@@ -21,11 +21,11 @@ class StoreTaskSerializer(serializers.ModelSerializer):
         )
     
     def get_branches(self, obj):
-        store_qs = StoreBranch.objects.filter(
+       store_qs = StoreBranch.objects.filter(
             store=obj.store_branch,
             is_active=True,
-        )
+       )
 
-        serializer = StoreBranchSerializer(data=account_qs)
-        serializer.is_valid()
-        return serializer.data
+       serializer = StoreBranchSerializer(data=store_qs)
+       serializer.is_valid()
+       return serializer.data

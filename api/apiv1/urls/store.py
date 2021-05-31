@@ -22,8 +22,6 @@ store_patterns = [
 		r'^(?P<pk>\d+)/details', 
 		StoreDetailView.as_view(),
 	),
-
-
 	re_path(
 		'list/', 
 		StoreBranchRetrieveAPIView.as_view(),
@@ -32,8 +30,6 @@ store_patterns = [
 		r'^(?P<pk>\d+)/details', 
 		StoreBranchDetailView.as_view(),
 	),
-
-
 	re_path(
 		'list/', 
 		AccountBranchRetrieveAPIView.as_view(),
