@@ -34,6 +34,10 @@ class SignInForm extends Component {
 
   render() {
     return (
+      <div>
+      <p className="formTitle">
+        Sign In
+      </p>
       <div className="formCenter">
         <form className="formFields" onSubmit={this.handleSubmit}>
           <div className="formField">
@@ -67,13 +71,15 @@ class SignInForm extends Component {
           </div>
 
           <div className="formField">
-            <button className="formFieldButton">Sign In</button>{" "}
-            <Link to="/" className="formFieldLink">
-              Create an account
-            </Link>
+            <button
+              className="formFieldButton"
+             >
+              Sign In
+            </button>
           </div>
 
         </form>
+      </div>
       </div>
     );
   }

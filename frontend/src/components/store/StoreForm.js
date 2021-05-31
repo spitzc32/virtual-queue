@@ -41,7 +41,7 @@ class StoreForm extends Component {
     return (
       <div>
       <div className="formTitle">
-        Sign Up
+        Store Form
       </div>
       <div className="formCenter">
         <form className="formFields" onSubmit={this.handleSubmit}>
@@ -106,7 +106,7 @@ class StoreForm extends Component {
           </div>
 
           <div className="formField">
-            <Link to="/storebranch">
+            <Link to="/store/branch">
               <button className="formFieldButton">Next</button>
             </Link>
           </div>

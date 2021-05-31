@@ -17,7 +17,8 @@ class App extends Component {
           <div className="appForm">
             <div className="pageSwitcher">
               <NavLink
-                to="/signin"
+                exact
+                to="/"
                 activeClassName="pageSwitcherItem-active"
                 className="pageSwitcherItem"
               >
@@ -42,9 +43,9 @@ class App extends Component {
             </div>
 
             <Route exact path="/signup" component={SignUpForm} />
-            <Route path="/signin" component={SignInForm} />
-            <Route path="/store" component={StoreForm} />
-            <Route path="/storebranch" component={StoreBranchForm} />
+            <Route exact path="/" component={SignInForm} />
+            <Route exact path="/store" component={StoreForm} />
+            <Route path="/store/branch" component={StoreBranchForm} />
           </div>
         </div>
       </Router>

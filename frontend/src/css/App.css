@@ -55,6 +55,7 @@
 .formTitle {
   color: #707c8b;
   font-weight: 300;
+  font-size: 30px;
   margin-bottom: 50px;
 }
 
@@ -104,11 +105,11 @@
 }
 
 .formFieldButton {
+  width: 85%;
   background-color: #6b5b95;
   color: white;
   border: none;
   outline: none;
-  border-radius: 25px;
   padding: 15px 70px;
   font-size: 0.8em;
   font-weight: 500;

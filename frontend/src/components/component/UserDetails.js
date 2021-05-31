@@ -75,15 +75,15 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
             />
           </div>
 
-          <Button
-            onClick={ Continue }
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Next
-          </Button>
+          <div className="formField">
+            <button
+              className="formFieldButton"
+              onClick={ Continue }
+              type="submit"
+             >
+              Next
+            </button>
+          </div>
         </form>
       </div>
     </Container>

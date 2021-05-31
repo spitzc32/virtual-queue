@@ -106,24 +106,31 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
             </label>
           </div>
 
-          <Button
+         <br />
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <div className="formField">
+              <button
+                className="formFieldButton"
                 onClick={ Previous }
                 type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
+               >
                 Previous
-          </Button>
-          <Button
-            onClick={ Continue }
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Next
-          </Button>
+              </button>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <div className="formField">
+              <button
+                className="formFieldButton"
+                onClick={ Continue }
+                type="submit"
+               >
+                Next
+              </button>
+            </div>
+          </Grid>
+        </Grid>
         </form>
       </div>
     </Container>

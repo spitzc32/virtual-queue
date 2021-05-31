@@ -15,7 +15,7 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
   }
 
   return (
-    <Container  component="main" maxWidth="xs">
+    <Container  component="main" maxWidth="xl">
       <div>
         <List>
           <ListItem>
@@ -44,26 +44,26 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
         <br />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
-            <Button
-              onClick={ Previous }
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-            >
-              Previous
-            </Button>
+            <div className="formField">
+              <button
+                className="formFieldButton"
+                onClick={ Previous }
+                type="submit"
+               >
+                Previous
+              </button>
+            </div>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Button
-              onClick={ Continue }
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-            >
-              Confirm & Continue
-            </Button>
+            <div className="formField">
+              <button
+                className="formFieldButton"
+                onClick={ Continue }
+                type="submit"
+               >
+                Confirm & Continue
+              </button>
+            </div>
           </Grid>
         </Grid>
       </div>
