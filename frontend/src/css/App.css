@@ -144,3 +144,14 @@
 .socialMediaButtons {
   padding: 10px 100px 10px 0px;
 }
+
+.formFieldError {
+  background-color: #b45656;
+  color: rgb(255, 246, 246);
+  border: none;
+  outline: none;
+  padding: 20px 70px;
+  font-size: 0.8em;
+  font-weight: 500;
+  display: none;
+}

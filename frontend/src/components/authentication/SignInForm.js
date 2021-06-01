@@ -8,7 +8,8 @@ class SignInForm extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,9 +30,16 @@ class SignInForm extends Component {
     event.preventDefault();
 
     console.log("The form was submitted with the following data:");
-    console.log(this.state);
+    this.validation();
   }
 
+  validation(){
+     if (document.getElementsByName('email')[0].value.length>250 || this.state.email=="" || this.state.password==""){
+      document.getElementsByName('error')[0].style.display="block";
+    }   
+    else console.log(this.state);
+  }
+   
   render() {
     return (
       <div className="formCenter">
@@ -71,6 +79,12 @@ class SignInForm extends Component {
             <Link to="/" className="formFieldLink">
               Create an account
             </Link>
+          </div>
+
+          <div className="formField">
+            <div className="formFieldError" name='error'>
+              Error: Invalid Email/Password.
+            </div> 
           </div>
 
         </form>
