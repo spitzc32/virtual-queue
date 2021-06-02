@@ -24,6 +24,14 @@ class SignUpForm extends Component {
       is_active: true,
       is_staff: false,
       is_worker: false,
+      errors: {
+        email: 'Please enter an email address',
+        username: 'Please enter a username',
+        password: 'Please enter a password',
+        first_name: 'Please enter your first name',
+        last_name: 'Please enter your last name',
+        preferred_name: 'Please enter your preferred name',
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -57,6 +65,35 @@ class SignUpForm extends Component {
     console.log("The form was submitted with the following data:");
     console.log(this.state);
   }
+
+
+   validationErrorMessage = (event) => {
+    const { name, value } = event.target;
+    let errors = this.state.errors;
+
+    switch (name) {
+      case 'email': 
+        errors.user.email = value.length < 1 && value.length > 255 ? 'Please input a username' : '';
+        break;
+      case 'username': 
+        errors.user.username = value.length < 1 && value.length > 255 ? 'Please input a username' : '';
+        break;
+      case 'first_name': 
+        errors.user.first_name = value.length < 1 && value.length > 150? 'Please input your first name' : '';
+        break;
+      case 'last_name': 
+        errors.user.last_name = value.length < 1 && value.length > 150? 'Please input your last name' : '';
+        break;
+      case 'password': 
+        errors.user.password = value.length < 1 && value.length > 64 ? 'Please input a password' : '';
+        break;
+      case 'preferred_name': 
+        errors.user.preferred_name = value.length < 1 && value.length > 128? 'Please input your preferred name' : '';
+        break;
+      default:
+        break;
+    }
+
 
   render() {
     const { step } = this.state;
