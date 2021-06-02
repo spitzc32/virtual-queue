@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -13,11 +13,19 @@ class StoreBranchForm extends Component {
       state_province: "",
       country: "",
       store: 0,
+      errors: {
+        branch: 'Please enter branch name.',
+        address: 'Please enter address.',
+        city: 'Please enter city.',
+        state_province: 'Please enter state or province.',
+        country: 'Please enter country.'
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   handleChange(event) {
     let target = event.target;
@@ -34,6 +42,33 @@ class StoreBranchForm extends Component {
 
     console.log("The form was submitted with the following data:");
     console.log(this.state);
+  }
+
+  validationErrorMessage(event) {
+    const { name, value } = event.target;
+    let errors = this.state.errors;
+
+    switch (name) {
+      case 'branch': 
+        errors.branch = value.length < 1 && value.length > 100 ? 'Please enter branch name.' : '';
+        break;
+      case 'address': 
+        errors.address = value.length < 1 && value.length > 500 ? '' : 'Please enter address.';
+        break;
+      case 'city': 
+        errors.city = value.length < 1 && value.length > 50 ? 'Please enter city.' : '';
+        break;
+      case 'state_province': 
+        errors.state_province = value.length < 1 && value.length > 80 ? `Please enter state or province.` : '';
+        break;
+      case 'country': 
+        errors.country = value.length < 1 && value.length > 50 ? `Please enter country.` : '';
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ errors });
   }
 
   render () {

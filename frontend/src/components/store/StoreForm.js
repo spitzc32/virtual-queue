@@ -13,7 +13,12 @@ class StoreForm extends Component {
       default_opening_hours: "",
       store_rep: null,
       has_branch: false,
-
+      errors: {
+        name: 'Please enter store name.',
+        description: 'Please enter description.',
+        website_url: 'Please enter url.',
+        default_opening_hours: 'Please enter opening hours.',
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -35,6 +40,30 @@ class StoreForm extends Component {
 
     console.log("The form was submitted with the following data:");
     console.log(this.state);
+  }
+
+  validationErrorMessage = (event) => {
+    const { name, value } = event.target;
+    let errors = this.state.errors;
+
+    switch (name) {
+      case 'name': 
+        errors.name = value.length < 1 && value.length > 255 ? 'Please enter store name.' : '';
+        break;
+      case 'description': 
+        errors.description = value.length < 1 && value.length > 1000 ? '' : 'Please enter description.';
+        break;
+      case 'website_url': 
+        errors.website_url = value.length < 1 && value.length > 500 ? 'Please enter url.' : '';
+        break;
+      case 'default_opening_hours': 
+        errors.default_opening_hours = value.length < 1 && value.length > 50 ? `Please enter opening hours.` : '';
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ errors });
   }
 
   render() {
