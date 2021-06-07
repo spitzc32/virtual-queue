@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Container, Typography, Grid, TextField, Button } from '@material-ui/core';
+import React from "react";
+import { Container } from '@material-ui/core';
 
 
 const UserDetails = ({ nextStep, handleChange, values }) => {
@@ -14,7 +13,11 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
   return (
     <Container  component="main" maxWidth="xl">
       <div className="formTitle">
-        Sign Up
+        Step 1: Basic user Details
+        <p className="formSub">
+          In this section we will gather your basic details
+          to login on our site.
+        </p>
       </div>
       <div className="formCenter">
         <form className="formFields">
@@ -61,17 +64,17 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
             />
           </div>
           <div className="formField">
-            <label className="formFieldLabel" htmlFor="password">
+            <label className="formFieldLabel" htmlFor="rpassword">
               Repeat Password
             </label>
             <input
               type="password"
-              id="password"
+              id="rpassword"
               className="formFieldInput"
-              placeholder="Enter your password"
-              name="password"
-              value={values.password}
-              onChange={handleChange('password')}
+              placeholder="Repeat your password"
+              name="rpassword"
+              value={values.rpassword}
+              onChange={handleChange('rpassword')}
             />
           </div>
 

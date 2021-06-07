@@ -26,16 +26,17 @@ class StoreSerializer(serializers.ModelSerializer):
     def get_branches(self, obj):
         store_qs = StoreBranch.objects.filter(
             store=obj.id,
-            is_active=True,
         )
 
-        serializer = StoreBranchSerializer(data=store_qs)
-        serializer.is_valid()
+        serializer = StoreBranchSerializer(
+            store_qs,
+            read_only=True,
+            many=True
+        )
         return serializer.data
 
 
 class StoreBranchSerializer(serializers.ModelSerializer):
-    store = serializers.SerializerMethodField()
 
     class Meta:
         model = StoreBranch
@@ -47,8 +48,8 @@ class StoreBranchSerializer(serializers.ModelSerializer):
             'state_province',
             'country',
             'is_active',
+            'store',
         )
-
 
 
 class AccountBranchSerializer(serializers.ModelSerializer):

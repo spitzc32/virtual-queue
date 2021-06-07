@@ -9,34 +9,29 @@ from ..views.store import (
 	StoreDetailView,
 	StoreBranchRetrieveAPIView,
 	StoreBranchDetailView,
-	AccountBranchRetrieveAPIView,
-	AccountBranchDetailView
-	)
+	AccountBranchRetrieveAPIView
+)
 
 store_patterns = [
 	re_path(
-		'list/', 
+		r'^list/$',
 		StoreRetrieveAPIView.as_view(),
 	),
 	re_path(
-		r'^(?P<pk>\d+)/details', 
+		r'^(?P<pk>\d+)/details',
 		StoreDetailView.as_view(),
 	),
 	re_path(
-		'list/', 
+		r'^branch/list/$',
 		StoreBranchRetrieveAPIView.as_view(),
 	),
 	re_path(
-		r'^(?P<pk>\d+)/details', 
+		r'^(?P<pk>\d+)/branch/details',
 		StoreBranchDetailView.as_view(),
 	),
 	re_path(
-		'list/', 
+		r'^account/list/$',
 		AccountBranchRetrieveAPIView.as_view(),
-	),
-	re_path(
-		r'^(?P<pk>\d+)/details', 
-		AccountBranchDetailView.as_view(),
 	),
 ]
 

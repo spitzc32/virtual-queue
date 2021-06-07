@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Container, Typography, Grid, TextField, Button } from '@material-ui/core';
+import React from "react";
+import { Container, Grid } from '@material-ui/core';
 
 
 const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
@@ -9,17 +8,21 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
   const Continue = e => {
     e.preventDefault();
     nextStep();
-  }
+  };
 
   const Previous = e => {
     e.preventDefault();
     prevStep();
-  }
+  };
 
   return (
     <Container  component="main" maxWidth="xl">
       <div className="formTitle">
-        Personal Details
+        Step 2: Personal Details
+        <p className="formSub">
+          In this section we will gather your personal details
+          to use for our queue.
+        </p>
       </div>
       <div className="formCenter">
         <form className="formFields">
@@ -85,22 +88,9 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
               <input
                 className="formFieldCheckbox"
                 type="checkbox"
-                name="hasAgreed"
-                value={values.hasAgreed}
-                onChange={this.handleChange}
-              />
-             Allow location
-            </label>
-          </div>
-
-          <div className="formField">
-            <label className="formFieldCheckboxLabel">
-              <input
-                className="formFieldCheckbox"
-                type="checkbox"
-                name="hasAgreed"
+                name="is_worker"
                 value={values.is_worker}
-                onChange={this.handleChange}
+                onChange={handleChange('is_worker')}
               />
               I am a worker in a store
             </label>
@@ -134,7 +124,7 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
         </form>
       </div>
     </Container>
-  )
+  );
 }
 
 export default PersonalDetails;

@@ -3,18 +3,24 @@ from django.urls import re_path
 
 from ..views.accounts import (
 	AccountRetrieveAPIView,
-	AccountDetailView
+	AccountDetailView,
+	AccountStoreBranchApiView
 	)
 
 
 account_patterns = [
 	re_path(
-		'list/', 
+		r'list/',
 		AccountRetrieveAPIView.as_view(),
 	),
+
 	re_path(
-		r'^(?P<pk>\d+)/details', 
+		'<str:email>/details',
 		AccountDetailView.as_view(),
+	),
+	re_path(
+		r'^worker/(?P<pk>\d+)/details',
+		AccountStoreBranchApiView.as_view(),
 	),
 ]
 

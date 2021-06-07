@@ -61,5 +61,5 @@ class StoreBranch(BaseModel):
     )
 
     def __str__(self):
-        return "{} - {}".format(self.store.name, branch)
+        return "{} - {}".format(self.store.name, self.branch)
 

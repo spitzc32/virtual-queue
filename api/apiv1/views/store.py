@@ -39,7 +39,3 @@ class AccountBranchRetrieveAPIView(generics.ListCreateAPIView):
     queryset = StoreBranch.objects.all()
     serializer_class = AccountBranchSerializer
 
-
-class AccountBranchDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = StoreBranch.objects.all()
-    serializer_class = AccountBranchSerializer

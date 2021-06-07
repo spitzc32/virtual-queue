@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import { Container } from '@material-ui/core';
 
 class SignInForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       email: "",
@@ -29,12 +29,13 @@ class SignInForm extends Component {
     event.preventDefault();
 
     console.log("The form was submitted with the following data:");
-    console.log(this.state);
+    console.log(this.state, this.props);
+    window.location.href = window.location.origin + "#/auth/dashboard";
   }
 
   render() {
     return (
-      <div>
+      <Container  component="main" maxWidth="xl">
       <p className="formTitle">
         Sign In
       </p>
@@ -71,8 +72,10 @@ class SignInForm extends Component {
           </div>
 
           <div className="formField">
+
             <button
               className="formFieldButton"
+              type="submit"
              >
               Sign In
             </button>
@@ -80,7 +83,7 @@ class SignInForm extends Component {
 
         </form>
       </div>
-      </div>
+      </Container>
     );
   }
 }

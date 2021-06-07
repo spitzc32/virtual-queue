@@ -1,0 +1,6 @@
+Reminders to latest pull functionality of current branch commit:
+
+Install the following dependencies:
+npm install bootstrap react-redux redux redux-thunk react-router-dom prop-types
+
+They are included in additional dependencies so please do install them.

@@ -1,43 +1,92 @@
-import React from 'react'
-import { Container, Grid, List, ListItem, ListItemText, Button } from '@material-ui/core'
+import React, {useContext} from 'react';
+import { Container, Grid, List, ListItem, ListItemText } from '@material-ui/core';
+import axios from 'axios';
+
+import { UserContext } from "../../context/UserContext";
+import Dashboard from "../dashboard/Dashboard";
 
 const Confirmation = ({ prevStep, nextStep, values }) => {
   console.log(values);
-  const { email, profile_picture, username, first_name, last_name, password, preferred_name, secondary_email, longitude, latitude,  is_active, is_staff, is_worker } = values
+  const { email, profile_picture, username, first_name, last_name, password, preferred_name, secondary_email, longitude, latitude,  is_active, is_staff, is_worker, store, store_id } = values
+  const [user, setUser] = useContext(UserContext);
+
   const Continue = e => {
-    e.preventDefault();
-    nextStep();
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const lat = position.coords.latitude;
+      const long = position.coords.longitude;
+      const isw = store_id > 0 ? 1 : 0;
+      const urls = ['http://127.0.0.1:8000/api/v1/account/list/',
+          'http://127.0.0.1:8000/api/v1/worker/'+store_id+'/details'];
+
+      const payload = {
+        email: email,
+        profile_picture: profile_picture,
+        username: username,
+        first_name: first_name,
+        last_name: last_name,
+        password: password,
+        preferred_name: preferred_name,
+        secondary_email: secondary_email,
+        longitude: long,
+        latitude: lat,
+        is_active: true,
+        is_staff: false,
+        is_worker: is_worker,
+      };
+
+      console.log(urls[isw])
+      axios.post(urls[isw], payload)
+        .then(response => {
+          if (response.status == 200 || response.status == 201) {
+            setUser(response.data);
+            return (
+              <Dashboard
+              />
+            );
+          } else {
+            console.log(res.data);
+          }
+        });
+    });
   }
 
   const Previous = e => {
     e.preventDefault();
     prevStep();
-  }
+  };
+
 
   return (
     <Container  component="main" maxWidth="xl">
+      <div className="formTitle">
+        Step 3: Confirm the Entries Below
+        <p className="formSub">
+          In this section, you can view your changes to see if
+          they are all good to go.
+        </p>
+      </div>
       <div>
         <List>
           <ListItem>
-            <ListItemText primary="Email" secondary={email}/>
+            <ListItemText className="formFieldLabel" primary="Email" secondary={email}/>
           </ListItem>
           <ListItem>
-            <ListItemText primary="Profile Picture" secondary={profile_picture}/>
+            <ListItemText className="formFieldLabel" primary="Profile Picture" secondary={profile_picture}/>
           </ListItem>
           <ListItem>
-            <ListItemText primary="Username" secondary={username}/>
+            <ListItemText className="formFieldLabel" primary="Username" secondary={username}/>
           </ListItem>
           <ListItem>
-            <ListItemText primary="First Name" secondary={first_name}/>
+            <ListItemText className="formFieldLabel" primary="First Name" secondary={first_name}/>
           </ListItem>
           <ListItem>
-            <ListItemText primary="Last Name" secondary={last_name}/>
+            <ListItemText className="formFieldLabel" primary="Last Name" secondary={last_name}/>
           </ListItem>
           <ListItem>
-            <ListItemText primary="Preferred Name" secondary={preferred_name}/>
+            <ListItemText className="formFieldLabel" primary="Preferred Name" secondary={preferred_name}/>
           </ListItem>
           <ListItem>
-            <ListItemText primary="Secondary Email" secondary={secondary_email}/>
+            <ListItemText className="formFieldLabel" primary="Secondary Email" secondary={secondary_email}/>
           </ListItem>
         </List>
 
@@ -68,7 +117,7 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
         </Grid>
       </div>
     </Container>
-  )
+  );
 }
 
-export default Confirmation
+export default Confirmation;

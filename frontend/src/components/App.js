@@ -1,54 +1,26 @@
-import React, { Component } from "react";
+import  React, {useState, createRef, useContext, Component } from 'react';
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 
-import SignUpForm from "./authentication/SignUpForm";
-import SignInForm from "./authentication/SignInForm";
-import StoreForm from "./store/StoreForm";
-import StoreBranchForm from "./store/StoreBranchForm";
+import Director from "./Director";
+import Dashboard from "./dashboard/Dashboard";
+
+import { UserProvider } from "../context/UserContext";
+import { StoreProvider } from "../context/StoreContext";
+import { BranchProvider } from "../context/BranchContext";
 
 import "../css/App.css";
 
 class App extends Component {
+
   render() {
     return (
-      <Router basename="/auth/">
-        <div className="App">
-          <div className="appAside" />
-          <div className="appForm">
-            <div className="pageSwitcher">
-              <NavLink
-                exact
-                to="/"
-                activeClassName="pageSwitcherItem-active"
-                className="pageSwitcherItem"
-              >
-                Sign In
-              </NavLink>
-              <NavLink
-                exact
-                to="/signup"
-                activeClassName="pageSwitcherItem-active"
-                className="pageSwitcherItem"
-              >
-                Sign Up
-              </NavLink>
-              <NavLink
-                exact
-                to="/store"
-                activeClassName="pageSwitcherItem-active"
-                className="pageSwitcherItem"
-              >
-                Apply Store
-              </NavLink>
-            </div>
-
-            <Route exact path="/signup" component={SignUpForm} />
-            <Route exact path="/" component={SignInForm} />
-            <Route exact path="/store" component={StoreForm} />
-            <Route path="/store/branch" component={StoreBranchForm} />
-          </div>
-        </div>
-      </Router>
+      <UserProvider>
+      <StoreProvider>
+      <BranchProvider>
+        <Director />
+      </BranchProvider>
+      </StoreProvider>
+      </UserProvider>
     );
   }
 }

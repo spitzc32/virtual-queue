@@ -1,120 +1,103 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import StoreDetails from "../component/StoreDetails";
+import StoreBranchDetails from "../component/StoreBranchDetails";
+import StoreConfirmation from "../component/StoreConfirmation";
+import StepBar from "../elements/StepBar";
 
 class StoreForm extends Component {
   constructor() {
     super();
 
     this.state = {
+      step: 1,
+      percentage: 33,
       name: "",
       description: "",
       website_url: "",
       default_opening_hours: "",
       store_rep: null,
       has_branch: false,
-
+      branch: "",
+      address: "",
+      city: "",
+      state_province: "",
+      country: "",
+      store: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.nextStep = this.nextStep.bind(this);
+    this.prevStep = this.prevStep.bind(this);
   }
 
-  handleChange(event) {
-    let target = event.target;
-    let value = target.type === "checkbox" ? target.checked : target.value;
-    let name = target.name;
+  handleChange = input => e => {
+    this.setState({ [input]: e.target.value });
+  }
 
+  prevStep(event) {
+    const { step, percentage } = this.state;
     this.setState({
-      [name]: value
+        step: step - 1,
+        percentage: percentage - 33
     });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-
-    console.log("The form was submitted with the following data:");
-    console.log(this.state);
+  nextStep(event) {
+    const { step, percentage } = this.state;
+    this.setState({
+        step: step + 1,
+        percentage: percentage + 33
+    });
   }
 
   render() {
-    return (
-      <div>
-      <div className="formTitle">
-        Store Form
-      </div>
-      <div className="formCenter">
-        <form className="formFields" onSubmit={this.handleSubmit}>
-          <div className="formField">
-            <label className="formFieldLabel" htmlFor="name">
-              Store Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="formFieldInput"
-              placeholder="Enter your store name"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-          </div>
+    const { step } = this.state;
 
-          <div className="formField">
-            <label className="formFieldLabel" htmlFor="description">
-              Description
-            </label>
-            <input
-              type="text"
-              id="description"
-              className="formFieldInput"
-              placeholder="Enter a short description to describe your store"
-              name="description"
-              value={this.state.description}
-              onChange={this.handleChange}
-            />
-          </div>
+    const { name, description, website_url, default_opening_hours, store_rep, has_branch } = this.state;
+    const store_values = { name, description, website_url, default_opening_hours, store_rep, has_branch };
 
-          <div className="formField">
-            <label className="formFieldLabel" htmlFor="website_url">
-              Website Url
-            </label>
-            <input
-              type="text"
-              id="website_url"
-              className="formFieldInput"
-              placeholder="Enter the site of your store(if any)"
-              name="website_url"
-              value={this.state.website_url}
-              onChange={this.handleChange}
-            />
-          </div>
+    const { branch, address, city, state_province, country, store } = this.state;
+    const store_branch_values = { branch, address, city, state_province, country, store };
 
-          <div className="formField">
-            <label className="formFieldLabel" htmlFor="default_opening_hours">
-              Default Opening Hours
-            </label>
-            <input
-              type="text"
-              id="default_opening_hours"
-              className="formFieldInput"
-              placeholder="Enter the default opening hours"
-              name="default_opening_hours"
-              value={this.state.default_opening_hours}
-              onChange={this.handleChange}
-            />
-          </div>
+    switch (step){
+      case 1:
+        return (
+          <>
+          <StepBar percentage={this.state.percentage}/>
+          <StoreDetails
+            nextStep={ this.nextStep }
+            handleChange={ this.handleChange }
+            values={ store_values }
+          />
+          </>
+        );
+      case 2:
+        return (
+          <>
+          <StepBar percentage={this.state.percentage}/>
+          <StoreBranchDetails
+            nextStep={ this.nextStep }
+            handleChange={ this.handleChange }
+            values={ store_branch_values }
+          />
+          </>
+        );
+      case 3:
+        return(
+          <>
+          <StepBar percentage={this.state.percentage}/>
+          <StoreConfirmation
+            nextStep={ this.nextStep }
+            handleChange={ this.handleChange }
+            store_values={ store_values }
+            branch_values= { store_branch_values }
+          />
+          </>
+        );
+    }
 
-          <div className="formField">
-            <Link to="/store/branch">
-              <button className="formFieldButton">Next</button>
-            </Link>
-          </div>
-
-        </form>
-      </div>
-      </div>
-    );
   }
 }
 
