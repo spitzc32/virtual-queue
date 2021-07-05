@@ -3,11 +3,11 @@ import shop from './images/shop.png';
 import add from './images/add.png';
 
 
-const BranchItem = ({prop, func}) => {
+const Branch = ({prop, func}) => {
 
   const Continue = e => {
     e.preventDefault();
-    func(prop.id, prop.uid);
+    func(prop);
   }
 
   if (prop) {
@@ -41,17 +41,8 @@ const BranchItem = ({prop, func}) => {
     </Grid>
     </div>
     );
-  } else {
-    return (
-      <div className="listBranchContainer" onClick={ Continue }>
-        <div className="formCenterLabel">
-          <img src={add} />
-        </div>
-      </div>
-    );
-
   }
 
 }
 
-export default BranchItem;
+export default Branch;

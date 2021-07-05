@@ -19,7 +19,11 @@
 .appDashboard {
   width: 100%;
   background-color: #12130f;
-  padding-top: 25px;
+  display: flex;
+}
+
+.appItem {
+  width: 80%;
 }
 
 .pageSwitcher {
@@ -55,7 +59,8 @@
 }
 
 .formCenter {
-  margin-bottom: 100px;
+  display: block;
+  margin-left: 25px;
 }
 
 .formTitle {
@@ -105,12 +110,77 @@
   padding: 10px;
 }
 
+.formFieldError {
+  background-color: #b45656;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  padding-top: 15px;
+  height: 50px;
+  width: 300px;
+  text-align: center;
+  margin-left: 30px;
+}
+
+.formFieldCon {
+  border: 1px solid #6b5b95;
+  border-radius: 10px;
+  padding-left: 25px;
+  width: 90%;
+  margin: 15px;
+  padding: 15px;
+}
+
+.formFieldBro {
+  border: 1px solid #6b5b95;
+  border-radius: 10px;
+  padding-left: 25px;
+  width: 90%;
+  height: 700px;
+  margin: 15px;
+  padding: 15px;
+  overflow:auto;
+}
+
+.formFieldProf {
+  border: 1px solid #6b5b95;
+  border-radius: 10px;
+  padding-left: 25px;
+  text-align: center;
+  width: 90%;
+  margin: 15px;
+  padding: 15px;
+}
+
+.formFieldDisplay {
+  text-transform: lowercase;
+  color: #445366;
+}
+.formFieldPic {
+  display: inline-block;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background-color: #6b5b95;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  text-align: center;
+  color: #707c8b;
+  font-weight: 800;
+  font-size: 60px;
+  text-transform: uppercase;
+  padding-top: 25px;
+  margin-top: 10px;
+}
+
 .formFieldLabel {
   display: block;
   text-transform: uppercase;
   font-size: 0.9em;
   color: white;
 }
+
 .formFieldInput {
   width: 85%;
   background-color: transparent;
@@ -121,7 +191,6 @@
   font-size: 1em;
   font-weight: 300;
   padding-bottom: 10px;
-  margin-top: 10px;
 }
 
 .formFieldInput::placeholder {

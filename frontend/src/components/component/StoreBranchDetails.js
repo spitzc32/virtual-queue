@@ -33,6 +33,29 @@ const StoreBranchDetails = ({ nextStep, handleChange, values }) => {
       });
   }
 
+  const validationErrorMessage = (event) => {
+    let err = false;
+
+    if (values.branch.length < 1 || values.branch.length > 128) {
+      values.errors.branch = 'Please input your branch name';
+      err = true;
+    } else if (values.address.length < 1 || values.address.length > 128) {
+      err = true;
+      values.errors.addresss = 'Please input a short address';
+    } else if (values.city.length < 1 || values.city.length > 150) {
+      err = true;
+      values.errors.city = 'Please input your city';
+    } else if (values.state_province.length < 1 || values.state_province.length > 150) {
+      err = true;
+      values.errors.state_province = 'Please input your state/province';
+    } else if (values.country.length < 1 || values.country.length > 150) {
+      err = true;
+      values.errors.country = 'Please input your country';
+    } if (!err) {
+      Continue(event);
+    }
+  }
+
   return (
     <Container  component="main" maxWidth="xl">
       <div className="formTitle">
@@ -59,6 +82,8 @@ const StoreBranchDetails = ({ nextStep, handleChange, values }) => {
               value={values.branch}
               onChange={handleChange('branch')}
             />
+            <br/>
+            { values.errors.branch }
           </div>
 
           <div className="formField">
@@ -74,6 +99,8 @@ const StoreBranchDetails = ({ nextStep, handleChange, values }) => {
               value={values.address}
               onChange={handleChange('address')}
             />
+            <br/>
+            { values.errors.address }
           </div>
 
           <div className="formField">
@@ -89,6 +116,8 @@ const StoreBranchDetails = ({ nextStep, handleChange, values }) => {
               value={values.city}
               onChange={handleChange('city')}
             />
+            <br/>
+            { values.errors.city }
           </div>
 
           <div className="formField">
@@ -104,6 +133,8 @@ const StoreBranchDetails = ({ nextStep, handleChange, values }) => {
               value={values.state_province}
               onChange={handleChange('state_province')}
             />
+            <br/>
+            { values.errors.state_province }
           </div>
 
           <div className="formField">
@@ -119,12 +150,14 @@ const StoreBranchDetails = ({ nextStep, handleChange, values }) => {
               value={values.country}
               onChange={handleChange('country')}
             />
+            <br/>
+            { values.errors.country }
           </div>
 
           <div className="formField">
             <button
               className="formFieldButton"
-              onClick={ Continue }
+              onClick={ validationErrorMessage }
               type="submit"
              >
               Next

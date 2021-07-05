@@ -1,14 +1,15 @@
 import React, {useContext} from 'react';
-import { Container, Grid, List, ListItem, ListItemText } from '@material-ui/core';
+import { Container, Grid, List, ListItem, ListItemText, Typography } from '@material-ui/core';
 import axios from 'axios';
 
 import { UserContext } from "../../context/UserContext";
+import { StoreContext } from "../../context/StoreContext";
 import Dashboard from "../dashboard/Dashboard";
 
 const Confirmation = ({ prevStep, nextStep, values }) => {
-  console.log(values);
   const { email, profile_picture, username, first_name, last_name, password, preferred_name, secondary_email, longitude, latitude,  is_active, is_staff, is_worker, store, store_id } = values
   const [user, setUser] = useContext(UserContext);
+  const [storeC, setStoreC] = useContext(StoreContext);
 
   const Continue = e => {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -39,10 +40,7 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
         .then(response => {
           if (response.status == 200 || response.status == 201) {
             setUser(response.data);
-            return (
-              <Dashboard
-              />
-            );
+            window.location.href = "http://127.0.0.1:3000/#/auth/dashboard";
           } else {
             console.log(res.data);
           }
@@ -68,25 +66,70 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
       <div>
         <List>
           <ListItem>
-            <ListItemText className="formFieldLabel" primary="Email" secondary={email}/>
+              <ListItemText
+                className="formFieldLabel"
+                primary='Email:'
+                secondary={
+                <Typography className="formFieldDisplay">
+                  {email}
+                </Typography>
+                }
+              />
           </ListItem>
           <ListItem>
-            <ListItemText className="formFieldLabel" primary="Profile Picture" secondary={profile_picture}/>
+            <ListItemText
+                className="formFieldLabel"
+                primary='Username:'
+                secondary={
+                <Typography className="formFieldDisplay">
+                  {username}
+                </Typography>
+                }
+              />
           </ListItem>
           <ListItem>
-            <ListItemText className="formFieldLabel" primary="Username" secondary={username}/>
+            <ListItemText
+                className="formFieldLabel"
+                primary='First Name:'
+                secondary={
+                <Typography className="formFieldDisplay">
+                  {first_name}
+                </Typography>
+                }
+              />
           </ListItem>
           <ListItem>
-            <ListItemText className="formFieldLabel" primary="First Name" secondary={first_name}/>
+            <ListItemText
+                className="formFieldLabel"
+                primary='Last Name:'
+                secondary={
+                <Typography className="formFieldDisplay">
+                  {last_name}
+                </Typography>
+                }
+              />
           </ListItem>
           <ListItem>
-            <ListItemText className="formFieldLabel" primary="Last Name" secondary={last_name}/>
+            <ListItemText
+                className="formFieldLabel"
+                primary='Preferred Name:'
+                secondary={
+                <Typography className="formFieldDisplay">
+                  {preferred_name}
+                </Typography>
+                }
+              />
           </ListItem>
           <ListItem>
-            <ListItemText className="formFieldLabel" primary="Preferred Name" secondary={preferred_name}/>
-          </ListItem>
-          <ListItem>
-            <ListItemText className="formFieldLabel" primary="Secondary Email" secondary={secondary_email}/>
+            <ListItemText
+                className="formFieldLabel"
+                primary='Secondary Email:'
+                secondary={
+                <Typography className="formFieldDisplay">
+                  {secondary_email}
+                </Typography>
+                }
+              />
           </ListItem>
         </List>
 

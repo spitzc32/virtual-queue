@@ -25,6 +25,19 @@ class StoreForm extends Component {
       state_province: "",
       country: "",
       store: 0,
+      error: {
+        name: '',
+        description: '',
+        website_url: '',
+        default_opening_hours: '',
+      },
+      errors: {
+        branch: '',
+        address: '',
+        city: '',
+        state_province: '',
+        country: '',
+      },
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -55,11 +68,11 @@ class StoreForm extends Component {
   render() {
     const { step } = this.state;
 
-    const { name, description, website_url, default_opening_hours, store_rep, has_branch } = this.state;
-    const store_values = { name, description, website_url, default_opening_hours, store_rep, has_branch };
+    const { name, description, website_url, default_opening_hours, store_rep, has_branch, error } = this.state;
+    const store_values = { name, description, website_url, default_opening_hours, store_rep, has_branch, error };
 
-    const { branch, address, city, state_province, country, store } = this.state;
-    const store_branch_values = { branch, address, city, state_province, country, store };
+    const { branch, address, city, state_province, country, store, errors } = this.state;
+    const store_branch_values = { branch, address, city, state_province, country, store, errors };
 
     switch (step){
       case 1:

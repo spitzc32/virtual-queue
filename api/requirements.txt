@@ -11,3 +11,5 @@ html2text
 pycurl
 bleach
 beautifulsoup4
+geocoder
+numpy

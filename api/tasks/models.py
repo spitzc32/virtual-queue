@@ -21,4 +21,4 @@ class StoreTask(BaseModel):
     opening_hours = models.CharField(max_length=55)
 
     def __str__(self):
-        return "{}- {}".format(self.store_branch.name, self.opening_hours)
+        return "{}- {}".format(self.store_branch.branch, self.opening_hours)

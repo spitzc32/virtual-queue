@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 
-import SignUpForm from "./SignUpForm";
-import SignInForm from "./SignInForm";
-import StoreForm from "../store/StoreForm";
+import StoreForm from './StoreForm';
 
+class Store extends Component {
 
-class Auth extends Component {
   render() {
     return (
-      <>
-      <Router basename="/auth/">
         <div className="App">
           <div className="appAside" />
           <div className="appForm">
@@ -40,16 +36,11 @@ class Auth extends Component {
                 Apply Store
               </NavLink>
             </div>
-
-            <Route exact path="/signup" component={SignUpForm} />
-            <Route exact path="/" component={SignInForm} />
-            <Route exact path="/store" component={StoreForm} />
+            <StoreForm />
           </div>
         </div>
-      </Router>
-      </>
     );
   }
 }
 
-export default Auth;
+export default Store;

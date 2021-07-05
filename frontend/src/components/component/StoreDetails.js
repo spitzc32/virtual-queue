@@ -9,6 +9,7 @@ const StoreDetails = ({ nextStep, handleChange, values }) => {
 
   // for continue event listener
   const Continue = e => {
+
     e.preventDefault();
 
     const payload = {
@@ -28,6 +29,26 @@ const StoreDetails = ({ nextStep, handleChange, values }) => {
           console.log(res.data);
         }
       });
+  }
+
+  const validationErrorMessage = (event) => {
+    let err = false;
+
+    if (values.name.length < 1 || values.name.length > 128) {
+      values.error.name = 'Please input your store name';
+      err = true;
+    } else if (values.description.length < 1 || values.description.length > 128) {
+      err = true;
+      values.error.description = 'Please input a short description';
+    } else if (values.website_url.length < 1 || values.website_url.length > 150) {
+      err = true;
+      values.error.website_url = 'Please input your website url';
+    } else if (values.default_opening_hours.length < 1 || values.default_opening_hours.length > 150) {
+      err = true;
+      values.error.default_opening_hours = 'Please input your Opening Hours';
+    } if (!err) {
+      Continue(event);
+    }
   }
 
   return (
@@ -54,6 +75,8 @@ const StoreDetails = ({ nextStep, handleChange, values }) => {
               value={values.name}
               onChange={handleChange('name')}
             />
+            <br/>
+            { values.error.name }
           </div>
 
           <div className="formField">
@@ -69,6 +92,8 @@ const StoreDetails = ({ nextStep, handleChange, values }) => {
               value={values.description}
               onChange={handleChange('description')}
             />
+             <br/>
+            { values.error.description }
           </div>
 
           <div className="formField">
@@ -84,6 +109,8 @@ const StoreDetails = ({ nextStep, handleChange, values }) => {
               value={values.website_url}
               onChange={handleChange('website_url')}
             />
+            <br/>
+            { values.error.website_url }
           </div>
 
           <div className="formField">
@@ -99,6 +126,8 @@ const StoreDetails = ({ nextStep, handleChange, values }) => {
               value={values.default_opening_hours}
               onChange={handleChange('default_opening_hours')}
             />
+            <br/>
+            { values.error.default_opening_hours }
           </div>
 
           <div className="formField">
@@ -117,7 +146,7 @@ const StoreDetails = ({ nextStep, handleChange, values }) => {
           <div className="formField">
             <button
               className="formFieldButton"
-              onClick={ Continue }
+              onClick={ validationErrorMessage }
               type="submit"
              >
               Next

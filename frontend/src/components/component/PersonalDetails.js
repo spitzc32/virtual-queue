@@ -7,13 +7,34 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
   // for continue event listener
   const Continue = e => {
     e.preventDefault();
-    nextStep();
+    validationErrorMessage(e);
+
   };
 
   const Previous = e => {
     e.preventDefault();
     prevStep();
   };
+
+  const validationErrorMessage = (event) => {
+    let err = false;
+
+    if (values.preferred_name.length < 1 || values.preferred_name.length > 128) {
+      values.errors.preferred_name = 'Please input your preferred name';
+      err = true;
+    } else if (values.secondary_email.length < 1 || values.secondary_email.length > 128) {
+      err = true;
+      values.errors.secondary_email = 'Please input your preferred name';
+    } else if (values.first_name.length < 1 || values.first_name.length > 150) {
+      err = true;
+      values.errors.first_name = 'Please input your first name';
+    } else if (values.last_name.length < 1 || values.last_name.length > 150) {
+      err = true;
+      values.errors.last_name = 'Please input your last name';
+    } if (!err) {
+      nextStep();
+    }
+  }
 
   return (
     <Container  component="main" maxWidth="xl">
@@ -39,6 +60,8 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
               value={values.first_name}
               onChange={handleChange('first_name')}
             />
+            <br/>
+            { values.errors.first_name }
           </div>
           <div className="formField">
             <label className="formFieldLabel" htmlFor="last_name">
@@ -53,6 +76,8 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
               value={values.last_name}
               onChange={handleChange('last_name')}
             />
+            <br/>
+            { values.errors.last_name }
           </div>
           <div className="formField">
             <label className="formFieldLabel" htmlFor="preferred_name">
@@ -67,6 +92,8 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
               value={values.preferred_name}
               onChange={handleChange('preferred_name')}
             />
+            <br/>
+            { values.errors.preferred_name }
           </div>
           <div className="formField">
             <label className="formFieldLabel" htmlFor="secondary_email">
@@ -81,6 +108,8 @@ const PersonalDetails = ({ prevStep, nextStep, handleChange, values }) => {
               value={values.secondary_email}
               onChange={handleChange('secondary_email')}
             />
+            <br/>
+            { values.errors.secondary_email }
           </div>
 
           <div className="formField">

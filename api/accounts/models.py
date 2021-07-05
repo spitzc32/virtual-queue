@@ -39,6 +39,9 @@ class Account(AbstractUser):
     latitude = models.FloatField(default=0)
 
     is_worker = models.BooleanField(default=False)
+    small_estimate = models.IntegerField(default=0, blank=True, null=True)
+    medium_estimate = models.IntegerField(default=0, blank=True, null=True)
+    large_estimate = models.IntegerField(default=0, blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -67,8 +70,7 @@ class AccountBarcode(BaseModel):
 
     """
     account = models.ForeignKey(to=Account, on_delete=models.CASCADE)
-    qr_code = models.ImageField(max_length=64, null=True, blank=True)
+    qr_code = models.CharField(max_length=64, null=True, blank=True)
     
     def __str__(self):
         return '{} QR'.format(self.account.preferred_name)
-

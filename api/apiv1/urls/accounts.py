@@ -4,8 +4,10 @@ from django.urls import re_path
 from ..views.accounts import (
 	AccountRetrieveAPIView,
 	AccountDetailView,
-	AccountStoreBranchApiView
-	)
+	AccountStoreBranchApiView,
+	AccountLoginView,
+    AccountBarcodeView,
+)
 
 
 account_patterns = [
@@ -13,10 +15,17 @@ account_patterns = [
 		r'list/',
 		AccountRetrieveAPIView.as_view(),
 	),
-
 	re_path(
-		'<str:email>/details',
+		r'^(?P<pk>\d+)/details/',
 		AccountDetailView.as_view(),
+	),
+	re_path(
+		r'^login/details$',
+		AccountLoginView.as_view(),
+	),
+    re_path(
+		r'^barcode/(?P<pk>\d+)/details/',
+		AccountBarcodeView.as_view(),
 	),
 	re_path(
 		r'^worker/(?P<pk>\d+)/details',

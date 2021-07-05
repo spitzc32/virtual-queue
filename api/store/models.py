@@ -4,6 +4,8 @@ from accounts.models import Account
 from django.db import models
 from django.conf import settings
 
+import geocoder
+
 class Store(BaseModel):
     """
     Store Model for our second entity, the store which customers will order from.
@@ -47,11 +49,14 @@ class StoreBranch(BaseModel):
     BaseModel : class obj
         Model intended for basic specification details
     """
+    location = geocoder.ip('me') if geocoder.ip('me') is not None else [14.6193, 121.0537]
     branch = models.CharField(max_length=100, default="main")
     address = models.CharField(max_length=500)
     city = models.CharField(max_length=50)
     state_province = models.CharField(max_length=80)
     country= models.CharField(max_length=50)
+    longitude = models.FloatField(default=location.latlng[1])
+    latitude = models.FloatField(default=location.latlng[0])
 
     store = models.ForeignKey(to=Store, on_delete=models.CASCADE)
     workers = models.ManyToManyField(

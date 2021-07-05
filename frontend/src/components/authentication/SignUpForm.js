@@ -18,6 +18,7 @@ class SignUpForm extends Component {
       percentage: 33,
       store: [],
       store_id: 0,
+      store_uid: [],
       email: "",
       profile_picture: null,
       username: "",
@@ -33,6 +34,16 @@ class SignUpForm extends Component {
       is_staff: false,
       is_worker: false,
       is_auth: false,
+      errors: {
+        email: '',
+        username: '',
+        password: '',
+        first_name: '',
+        last_name: '',
+        preferred_name: '',
+        secondary_email: '',
+        store_id: '',
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -49,10 +60,11 @@ class SignUpForm extends Component {
     });
   }
 
-  getId(id) {
-    const { store_id } = this.state;
+  getId(id, uid) {
+    const { store_id, store_uid } = this.state;
     this.setState({
-        store_id: id
+        store_id: id,
+        store_uid: uid,
     });
   };
 
@@ -95,8 +107,8 @@ class SignUpForm extends Component {
 
   render() {
     const { step } = this.state;
-    const { email, profile_picture, username, first_name, last_name, password, rpassword, preferred_name, secondary_email, longitude, latitude,  is_active, is_staff, is_worker, store } = this.state;
-    const values = { email, profile_picture, username, first_name, last_name, password, rpassword, preferred_name, secondary_email, longitude, latitude,  is_active, is_staff, is_worker, store }
+    const { email, profile_picture, username, first_name, last_name, password, rpassword, preferred_name, secondary_email, longitude, latitude,  is_active, is_staff, is_worker, store, errors } = this.state;
+    const values = { email, profile_picture, username, first_name, last_name, password, rpassword, preferred_name, secondary_email, longitude, latitude,  is_active, is_staff, is_worker, store, errors }
 
     switch(step) {
         case 1:

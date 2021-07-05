@@ -1,5 +1,6 @@
 from core.models import BaseModel
 from accounts.models import AccountBarcode
+from store.models import StoreBranch
 
 from django.db import models
 
@@ -20,7 +21,8 @@ class Order(BaseModel):
         Model intended for basic specification details
 
     """
-    account_bar = models.ForeignKey(to=AccountBarcode, on_delete=models.CASCADE)
+    store_branch = models.ForeignKey(to=StoreBranch, on_delete=models.CASCADE, null=True)
+    account_bar = models.ForeignKey(to=AccountBarcode, on_delete=models.CASCADE, null=True)
     queue_hour = models.IntegerField(default=0)
     queue_no = models.IntegerField(default=0)
 	

@@ -5,19 +5,29 @@ from django.urls import re_path
 # After that, import this in __init__.py for us to connect it in our
 # main url (@Jan)
 from ..views.orders import (
+    OrderCreateAPIView,
 	OrderRetrieveAPIView,
-	OrderDetailView
+	OrderDetailView,
+    BranchOpeningCreateAPIView,
 	)
 
 
 order_patterns = [
 	re_path(
-		'list/', 
+		r'^(?P<pk>\d+)/create/',
+		OrderCreateAPIView.as_view(),
+	),
+	re_path(
+		r'^(?P<pk>\d+)/list/',
 		OrderRetrieveAPIView.as_view(),
 	),
 	re_path(
 		r'^(?P<pk>\d+)/details', 
 		OrderDetailView.as_view(),
+	),
+	re_path(
+		'create/',
+        BranchOpeningCreateAPIView.as_view()
 	),
 ]
 

@@ -22,7 +22,10 @@ const WorkerDetails = ({ prevStep, nextStep, getId, values }) => {
   useEffect(() => {
     let st = values.store.map((item) => item);
     st.forEach((item) => {
-      item.branch= item.branches.length
+      item.branch= item.branches.length;
+      item.branches.forEach((branch) => {
+        branch.uid= item
+      });
     });
     setStoreItem(st);
   },[])

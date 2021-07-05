@@ -6,9 +6,13 @@ from django.db import IntegrityError
 from rest_framework import generics
 from rest_framework.generics import CreateAPIView
 
-from ..serializers.accounts import AccountSerializer
+from ..serializers.accounts import (
+    AccountSerializer,
+    AccountRetrieveSerializer,
+    AccountBarcodeSerializer,
+)
 
-from accounts.models import Account
+from accounts.models import Account, AccountBarcode
 from associates.models import AccountStoreBranch
 from store.models import StoreBranch
 
@@ -20,8 +24,24 @@ class AccountRetrieveAPIView(generics.ListCreateAPIView):
 class AccountDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
-    lookup_url_kwarg = 'email'
-    lookup_field = 'email'
+
+
+class AccountLoginView(generics.ListAPIView):
+    serializer_class = AccountRetrieveSerializer
+
+    def get_queryset(self):
+        user=self.request.query_params.get('email', None)
+        print(user)
+        account_qs = Account.objects.filter(
+            email=user
+        )
+
+        return account_qs
+
+
+class AccountBarcodeView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AccountBarcode.objects.all()
+    serializer_class = AccountBarcodeSerializer
 
 
 class AccountStoreBranchApiView(CreateAPIView):
@@ -33,13 +53,13 @@ class AccountStoreBranchApiView(CreateAPIView):
         store = StoreBranch.objects.get(id=pk)
         data = {}
 
-        response  = super(AccountStoreBranchApiView, self).create(request, **kwargs)
+        response = super(AccountStoreBranchApiView, self).create(request, **kwargs)
         account_id = response.data.get('id')
         account = Account.objects.get(id=account_id)
         try:
             AccountStoreBranch.objects.create(
-                store_branch = store,
-                account = account
+                store_branch=store,
+                account=account
             )
         except IntegrityError:
             data['message'] = 'Invalid project id'

@@ -6,9 +6,28 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
 
   // for continue event listener
   const Continue = e => {
+    validationErrorMessage(e);
     e.preventDefault();
-    nextStep();
   }
+  const validationErrorMessage = (event) => {
+
+    let err = false;
+    if (values.email.length < 1 || values.email.length > 255) {
+      values.errors.email = 'Please input a email';
+      err = true;
+    } if (values.username.length < 1 || values.username.length > 255) {
+      values.errors.username = 'Please input a username';
+      err = true;
+    } if (values.password.length < 1 || values.password.length > 64) {
+      values.errors.password =  'Please input a password';
+      err = true;
+    }  if (!err) {
+      nextStep();
+    }
+
+  }
+
+
 
   return (
     <Container  component="main" maxWidth="xl">
@@ -34,6 +53,8 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
               value={values.email}
               onChange={handleChange('email')}
             />
+            <br/>
+            { values.errors.email }
           </div>
           <div className="formField">
             <label className="formFieldLabel" htmlFor="username">
@@ -48,6 +69,8 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
               value={values.username}
               onChange={handleChange('username')}
             />
+            <br/>
+            { values.errors.username }
           </div>
           <div className="formField">
             <label className="formFieldLabel" htmlFor="password">
@@ -62,6 +85,8 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
               value={values.password}
               onChange={handleChange('password')}
             />
+            <br/>
+            { values.errors.password }
           </div>
           <div className="formField">
             <label className="formFieldLabel" htmlFor="rpassword">

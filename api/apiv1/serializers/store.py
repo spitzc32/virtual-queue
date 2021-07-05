@@ -49,11 +49,20 @@ class StoreBranchSerializer(serializers.ModelSerializer):
             'country',
             'is_active',
             'store',
+            'longitude',
+            'latitude',
         )
 
 
+class WorkerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Account
+        fields = ('__all__')
+
+
 class AccountBranchSerializer(serializers.ModelSerializer):
-    st_workers = serializers.SerializerMethodField()
+    workers = WorkerSerializer(read_only=True, many=True)
 
     class Meta:
         model = StoreBranch
@@ -66,15 +75,4 @@ class AccountBranchSerializer(serializers.ModelSerializer):
             'country',
             'is_active',
             'workers',
-            'st_workers',
         )
-
-    def get_st_workers(self, obj):
-        store_qs = Account.objects.filter(
-            id=obj.workers.account,
-            is_active=True,
-        )
-
-        serializer = AccountSerializer(data=store_qs)
-        serializer.is_valid()
-        return serializer.data
