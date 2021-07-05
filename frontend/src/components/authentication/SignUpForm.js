@@ -113,18 +113,18 @@ class SignUpForm extends Component {
     switch(step) {
         case 1:
           return(
-            <>
+            <div>
               <StepBar percentage={this.state.percentage}/>
               <UserDetails
                 nextStep={ this.nextStep }
                 handleChange={ this.handleChange }
                 values={ values }
               />
-            </>
+            </div>
           );
         case 2:
           return(
-            <>
+            <div>
               <StepBar percentage={this.state.percentage}/>
               <PersonalDetails
                 prevStep={ this.prevStep }
@@ -132,12 +132,12 @@ class SignUpForm extends Component {
                 handleChange={ this.handleChange }
                 values={ values }
               />
-            </>
+            </div>
           );
         case 3:
           if (this.state.is_worker) {
             return(
-             <>
+             <div>
                <StepBar percentage={this.state.percentage}/>
                <WorkerDetails
                   prevStep={ this.prevStep }
@@ -145,30 +145,30 @@ class SignUpForm extends Component {
                   getId= { this.getId }
                   values={ values }
                />
-             </>
+             </div>
           );
           } else {
             return(
-             <>
+             <div>
                <StepBar percentage={this.state.percentage}/>
                <Confirmation
                   prevStep={ this.prevStep }
                   nextStep={ this.nextStep }
                   values={ values }
                />
-             </>
+             </div>
            );
           }
         default:
           return(
-            <>
+            <div>
               <StepBar percentage={this.state.percentage}/>
               <Confirmation
                 prevStep={ this.prevStep }
                 nextStep={ this.nextStep }
                 values={ values }
               />
-            </>
+            </div>
           );
     }
 

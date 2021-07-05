@@ -48,7 +48,7 @@ const Home = () => {
   },[]);
 
   if (isWorking && user.length > 0) {
-    return (<><Demo data={array}/></>);
+    return (<div><Demo data={array}/></div>);
   } else if (user.length > 0) {
     return (<User />);
   } else {

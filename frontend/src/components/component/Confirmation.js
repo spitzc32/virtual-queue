@@ -42,7 +42,7 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
             setUser(response.data);
             window.location.href = "http://127.0.0.1:3000/#/auth/dashboard";
           } else {
-            console.log(res.data);
+            console.log(response.data);
           }
         });
     });

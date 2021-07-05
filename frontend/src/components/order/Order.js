@@ -68,7 +68,7 @@ const Order = () => {
             setOrder(arr);
             setOpenModal(true);
           } else {
-            console.log(res.data);
+            console.log(response.data);
           }
         });
     });

@@ -9,7 +9,7 @@ const Store = ({ prop, func }) => {
 
   console.log(prop);
   return (
-  <>
+  <div>
   <div className="listContainer">
     <Grid container spacing={3}>
       <Grid  xs={12} sm={8}>
@@ -49,7 +49,7 @@ const Store = ({ prop, func }) => {
                   prop={data}
                   func={func}/>
     })}
-  </>
+  </div>
   );
 
 }

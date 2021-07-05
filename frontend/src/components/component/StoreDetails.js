@@ -26,7 +26,7 @@ const StoreDetails = ({ nextStep, handleChange, values }) => {
           setStore(response.data);
           nextStep();
         } else {
-          console.log(res.data);
+          console.log(response.data);
         }
       });
   }
