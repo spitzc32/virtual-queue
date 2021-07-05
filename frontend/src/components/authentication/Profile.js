@@ -28,7 +28,7 @@ const Profile = () => {
   console.log(user);
   let isWorking = store.length > 0;
   const check = () => {
-    console.log(prop);
+    console.log("prop");
   }
 
   const handleModalOpen = () => {
@@ -54,13 +54,13 @@ const Profile = () => {
       if (response.status == 200 || response.status == 201) {
         setOpenModal(true);
       } else {
-        console.log(res.data);
+        console.log(response.data);
       }
     });
   }
 
   return(
-  <>
+  <div>
     <div className="appItem">
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
@@ -285,7 +285,7 @@ const Profile = () => {
         </Grid>
       </Grid>
     </div>
-  </>
+  </div>
   );
 }
 export default Profile;

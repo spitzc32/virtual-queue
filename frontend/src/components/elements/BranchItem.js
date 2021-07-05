@@ -1,6 +1,7 @@
 import { Grid } from '@material-ui/core';
 import shop from './images/shop.png';
 import add from './images/add.png';
+import React from 'react';
 
 
 const BranchItem = ({prop, func}) => {

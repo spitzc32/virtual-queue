@@ -28,7 +28,7 @@ const StoreBranchDetails = ({ nextStep, handleChange, values }) => {
           setBranch(response.data);
           nextStep();
         } else {
-          console.log(res.data);
+          console.log(response.data);
         }
       });
   }

@@ -77,29 +77,29 @@ class StoreForm extends Component {
     switch (step){
       case 1:
         return (
-          <>
+          <div>
           <StepBar percentage={this.state.percentage}/>
           <StoreDetails
             nextStep={ this.nextStep }
             handleChange={ this.handleChange }
             values={ store_values }
           />
-          </>
+          </div>
         );
       case 2:
         return (
-          <>
+          <div>
           <StepBar percentage={this.state.percentage}/>
           <StoreBranchDetails
             nextStep={ this.nextStep }
             handleChange={ this.handleChange }
             values={ store_branch_values }
           />
-          </>
+          </div>
         );
       case 3:
         return(
-          <>
+          <div>
           <StepBar percentage={this.state.percentage}/>
           <StoreConfirmation
             nextStep={ this.nextStep }
@@ -107,7 +107,7 @@ class StoreForm extends Component {
             store_values={ store_values }
             branch_values= { store_branch_values }
           />
-          </>
+          </div>
         );
     }
 
